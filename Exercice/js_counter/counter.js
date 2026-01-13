@@ -14,12 +14,18 @@ export const counter = {
         counter.elements.wrapper = document.createElement('div');
         counter.elements.counter = document.createElement('p');
         counter.elements.incrementButton = document.createElement('button');
+        counter.elements.decrementButton = document.createElement('button');
+        counter.elements.resetButton = document.createElement('button');
 
         counter.elements.incrementButton.textContent = 'Incrémenter';
+        counter.elements.decrementButton.textContent = 'Décrémenter';
+        counter.elements.resetButton.textContent = 'Réinitialiser';
 
         counter.elements.wrapper.append(
             counter.elements.counter,
-            counter.elements.incrementButton
+            counter.elements.incrementButton,
+            counter.elements.decrementButton,
+            counter.elements.resetButton
         );
 
         container.append(counter.elements.wrapper);
@@ -31,10 +37,28 @@ export const counter = {
         counter.data.count += 1;
         counter.updateDisplay();
     },
+    decrementCounter() { // Décrémenter les valeurs du compteur
+        counter.data.count -= 1;
+        counter.updateDisplay();
+    },
+    resetCounter() { // Réinitialiser les valeurs du compteur
+        counter.data.count = 0;
+        counter.updateDisplay();
+    },
     attachEvents() { // Pour la mise en place des écouteurs d'événements
         counter.elements.incrementButton.addEventListener(
             'click', 
-            counter.incrementCounter
+            counter.incrementCounter,
+            
+        );
+        counter.elements.decrementButton.addEventListener(
+            'click',
+            counter.decrementCounter,
+            
+        );
+        counter.elements.resetButton.addEventListener(
+            'click',
+            counter.resetCounter,
         );
     },
 };
